@@ -19,11 +19,7 @@ const eslintConfig = [
     "plugin:@typescript-eslint/recommended"
   ),
   {
-    ignores: [
-      "node_modules/**",
-      "build/**",
-      ".react-router/**",
-    ],
+    ignores: ["node_modules/**", "build/**", ".react-router/**"],
   },
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
