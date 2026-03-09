@@ -122,7 +122,10 @@ export default function HeroText() {
         ref={containerRef}
         className="w-full max-w-5xl text-center text-4xl md:text-[80px] grid place-items-center"
       >
-        <div className="flex items-center">
+        <span className="sr-only">
+          Master the Figma Pen-Tool in just 8 weeks
+        </span>
+        <div className="flex items-center gap-4">
           <OverflowContainer>
             <span ref={startTextRef} id="start-text">
               Master the
@@ -144,7 +147,7 @@ export default function HeroText() {
           </OverflowContainer>
           <OverflowContainer className="relative">
             <span ref={weeksTextRef}>8 weeks</span>
-            <YellowLine ref={yellowLineRef} />
+            <YellowLine ref={yellowLineRef} color="#FFCE2B" />
           </OverflowContainer>
         </div>
       </h1>
