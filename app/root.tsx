@@ -10,6 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import { GSAPLenisProvider } from "@/providers/smooth-scroll";
 import "./app.css";
+import CursorController from "@/providers/cursor-controller";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -34,6 +35,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <CursorController />
         <GSAPLenisProvider>{children}</GSAPLenisProvider>
         <ScrollRestoration />
         <Scripts />

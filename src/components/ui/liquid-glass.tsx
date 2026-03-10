@@ -1,30 +1,13 @@
 import { cn } from "@/lib/utils";
-import type { ButtonHTMLAttributes } from "react";
 
-export default function LiquidGlassButton({
-  ref,
-  children,
-  className,
-  ...props
-}: {
-  ref?: React.RefObject<HTMLButtonElement>;
+type LiquidGlassProps = {
   children: React.ReactNode;
   className?: string;
-  props?: ButtonHTMLAttributes<HTMLButtonElement>;
-}) {
+};
+
+export function LiquidGlass({ children, className }: LiquidGlassProps) {
   return (
     <>
-      <button
-        ref={ref}
-        className={cn(
-          "relative overflow-hidden w-max glass-button font-syne",
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </button>
-
       <svg style={{ display: "none" }}>
         <filter id="displacementFilter">
           <feTurbulence
@@ -43,6 +26,8 @@ export default function LiquidGlassButton({
           />
         </filter>
       </svg>
+
+      <div className={cn("glass", className)}>{children}</div>
     </>
   );
 }

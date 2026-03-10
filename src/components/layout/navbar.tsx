@@ -9,6 +9,7 @@ import {
 import LiquidGlassButton from "../ui/liquid-glass-button";
 import { Link } from "react-router";
 import { useState, type SVGProps, type ComponentType } from "react";
+import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   return (
@@ -16,8 +17,13 @@ export default function Navbar() {
       <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
         <Logo />
 
-        <nav className="w-max flex items-center gap-16">
-          <NavigationContainer to="/" title="Home" Icon={HomeIcon} />
+        <nav className="w-max flex items-center gap-32">
+          <NavigationContainer
+            to="/"
+            title="Home"
+            className="text-red"
+            Icon={HomeIcon}
+          />
           <NavigationContainer to="/" title="Info" Icon={InfoIcon} />
           <NavigationContainer to="/" title="Courses" Icon={CoursesIcon} />
           <NavigationContainer to="/" title="Chat" Icon={ChatIcon} />
@@ -32,13 +38,20 @@ export default function Navbar() {
   );
 }
 
-interface NavigationContainerProps {
+export type NavigationContainerProps = {
   to: string;
-  title: string;
+  title?: string;
+  className?: string;
   Icon: ComponentType<SVGProps<SVGSVGElement>>;
-}
+};
 
-const NavigationContainer = ({ to, title, Icon }: NavigationContainerProps) => {
+const NavigationContainer = ({
+  to,
+  title,
+  className,
+  Icon,
+  ...props
+}: NavigationContainerProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
@@ -46,21 +59,23 @@ const NavigationContainer = ({ to, title, Icon }: NavigationContainerProps) => {
       to={to}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative w-max grid place-items-center"
+      className={cn("relative w-max grid place-items-center", className)}
+      aria-label={title}
+      {...props}
     >
       <div className="relative w-full h-full grid place-items-center">
         <Icon
           className={`absolute transition-all duration-300 ease-out ${
-            isHovered ? "-translate-y-2" : "translate-y-0"
+            isHovered ? "-translate-y-1" : "translate-y-0"
           }`}
         />
-        <p
+        {/* <p
           className={`transition-all duration-300 ease-out ${
             isHovered ? "opacity-100 translate-y-4" : "opacity-0 translate-y-0"
           }`}
         >
           {title}
-        </p>
+        </p> */}
       </div>
     </Link>
   );
