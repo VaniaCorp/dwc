@@ -5,7 +5,4 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
-  ssr: {
-    external: ["gsap", "gsap/ScrollTrigger", "gsap/Flip", "gsap/SplitText"],
-  },
 });
