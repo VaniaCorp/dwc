@@ -24,6 +24,11 @@ jobs:
 
       - name: Build
         run: bun run build
+        env:
+          VITE_SANITY_PROJECT_ID: ${{ secrets.VITE_SANITY_PROJECT_ID }}
+          VITE_SANITY_DATASET: ${{ secrets.VITE_SANITY_DATASET }}
+          VITE_SANITY_API_VERSION: ${{ secrets.VITE_SANITY_API_VERSION }}
+          VITE_SANITY_USE_CDN: ${{ secrets.VITE_SANITY_USE_CDN }}
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
