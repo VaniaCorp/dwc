@@ -3,9 +3,7 @@ import type { Comment } from "@/lib/types/comments";
 import type { Student } from "@/lib/types/students";
 import type { HallOfFame } from "@/lib/types/hall-of-fame";
 import type { Team } from "@/lib/types/teams";
-import { sanityClient } from "./sanity.client";
-
-const getSanityClient = () => sanityClient;
+import { getSanityClient } from "./sanity.client";
 
 export const getFaqs = (): Promise<FAQ[]> =>
   getSanityClient().fetch(`*[_type == "faqs"] | order(_createdAt asc) {
