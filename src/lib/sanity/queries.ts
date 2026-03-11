@@ -1,23 +1,11 @@
-import { createClient } from "@sanity/client";
 import type { FAQ } from "@/lib/types/faqs";
 import type { Comment } from "@/lib/types/comments";
 import type { Student } from "@/lib/types/students";
 import type { HallOfFame } from "@/lib/types/hall-of-fame";
 import type { Team } from "@/lib/types/teams";
+import { sanityClient } from "./sanity.client";
 
-let _client: ReturnType<typeof createClient> | null = null;
-
-const getSanityClient = () => {
-  if (!_client) {
-    _client = createClient({
-      projectId: import.meta.env.VITE_SANITY_PROJECT_ID,
-      dataset: import.meta.env.VITE_SANITY_DATASET,
-      apiVersion: import.meta.env.VITE_SANITY_API_VERSION,
-      useCdn: import.meta.env.VITE_SANITY_USE_CDN,
-    });
-  }
-  return _client;
-};
+const getSanityClient = () => sanityClient;
 
 export const getFaqs = (): Promise<FAQ[]> =>
   getSanityClient().fetch(`*[_type == "faqs"] | order(_createdAt asc) {
