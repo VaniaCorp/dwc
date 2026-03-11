@@ -5,4 +5,5 @@ export const sanityClient = createClient({
   dataset: import.meta.env.VITE_SANITY_DATASET ?? "production",
   apiVersion: import.meta.env.VITE_SANITY_API_VERSION ?? "2024-06-15",
   useCdn: import.meta.env.VITE_SANITY_USE_CDN === "true",
+  stega: false,
 });

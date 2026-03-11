@@ -20,8 +20,12 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function clientLoader() {
-  const faqs = await getFaqs();
-  return { faqs };
+  try {
+    const faqs = await getFaqs();
+    return { faqs };
+  } catch {
+    return { faqs: [] };
+  }
 }
 
 clientLoader.hydrate = true;
