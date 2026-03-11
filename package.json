@@ -6,6 +6,7 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
+    "deploy": "bun run build && wrangler pages deploy build",
     "lint": "eslint .",
     "typecheck": "react-router typegen && tsc",
     "prettier-check": "prettier --check .",
