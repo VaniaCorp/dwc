@@ -5,7 +5,7 @@ type LiquidGlassProps = {
   className?: string;
 };
 
-export function LiquidGlass({ children, className }: LiquidGlassProps) {
+export function LiquidGlassCard({ children, className }: LiquidGlassProps) {
   return (
     <>
       <svg style={{ display: "none" }}>
@@ -20,7 +20,7 @@ export function LiquidGlass({ children, className }: LiquidGlassProps) {
           <feDisplacementMap
             in="SourceGraphic"
             in2="turbulence"
-            scale="200"
+            scale="300"
             xChannelSelector="R"
             yChannelSelector="G"
           />
