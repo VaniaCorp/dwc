@@ -23,7 +23,8 @@ export async function clientLoader() {
   try {
     const faqs = await getFaqs();
     return { faqs };
-  } catch {
+  } catch (error) {
+    console.error("[clientLoader] Failed to fetch Sanity data:", error);
     return { faqs: [] };
   }
 }
