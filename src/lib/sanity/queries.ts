@@ -15,14 +15,24 @@ export const getComments = (): Promise<Comment[]> =>
   getSanityClient().fetch(`*[_type == "comments"] | order(_createdAt desc) {
     _id, _type, _createdAt, _updatedAt, _rev,
     title,
-    image
+    image {
+      asset-> {
+        _id,
+        url
+      }
+    }
   }`);
 
 export const getStudents = (): Promise<Student[]> =>
   getSanityClient().fetch(`*[_type == "students"] | order(name asc) {
     _id, _type, _createdAt, _updatedAt, _rev,
     name,
-    image
+    image {
+      asset-> {
+        _id,
+        url
+      }
+    }
   }`);
 
 export const getStudentById = (id: string): Promise<Student | null> =>
@@ -30,7 +40,12 @@ export const getStudentById = (id: string): Promise<Student | null> =>
     `*[_type == "students" && _id == $id][0] {
       _id, _type, _createdAt, _updatedAt, _rev,
       name,
-      image
+      image {
+        asset-> {
+          _id,
+          url
+        }
+      }
     }`,
     { id }
   );

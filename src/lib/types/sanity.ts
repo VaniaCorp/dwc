@@ -10,6 +10,7 @@ export interface SanityReference {
   _ref: string;
   _type: "reference";
   _weak?: boolean;
+  url?: string;
 }
 
 export interface SanityImage {
