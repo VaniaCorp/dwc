@@ -1,5 +1,6 @@
 import type { Route } from "./+types/home";
 import { SendIcon } from "@/assets/icons";
+import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
 import SectionNavigation from "@/components/layout/sections-navigation";
 import Courses from "@/components/sections/courses";
@@ -38,7 +39,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     <>
       <Navbar />
       <main
-        className="w-full h-max 2xl:h-[57vh] flex items-center flex-col justify-center pt-16 pb-4"
+        className="w-full h-max 2xl:h-[57vh] flex items-center flex-col justify-center pt-4 xl:pt-16 pb-4"
         data-cursor-slot="#FFCE2B"
       >
         <IntroBento />
@@ -62,6 +63,12 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       </section>
 
       <SectionNavigation />
+
+      <section className="w-full" id="faqs" data-cursor-slot="#FFCE2B">
+        <FAQs faqs={faqs} />
+      </section>
+
+      <Footer />
     </>
   );
 }

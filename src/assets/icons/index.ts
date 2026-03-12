@@ -21,3 +21,12 @@ export { default as StudentsIcon } from "./navigation/students";
 export { default as TeamIcon } from "./navigation/team";
 export { default as FAQIcon } from "./navigation/faq";
 export { default as FeedbacksIcon } from "./navigation/feedbacks";
+
+// Social Icons
+
+export { default as Envelope } from "./footer/envelope";
+export { default as Instagram } from "./footer/instagram";
+export { default as Linkedin } from "./footer/linkedin";
+export { default as Phone } from "./footer/phone";
+export { default as XIcon } from "./footer/x";
+export { default as Facebook } from "./footer/facebook";
