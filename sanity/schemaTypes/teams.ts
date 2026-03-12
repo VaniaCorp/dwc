@@ -11,16 +11,9 @@ const teams = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'team_lead',
-      title: 'Team Lead',
-      type: 'reference',
-      to: [{type: 'students'}],
-    }),
-    defineField({
-      name: 'team_members',
-      title: 'Team Members',
-      type: 'array',
-      of: [{type: 'reference', to: {type: 'students'}}],
+      name: 'team_image',
+      title: 'Team Image',
+      type: 'image',
     }),
     defineField({
       name: 'project_link',

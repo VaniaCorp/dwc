@@ -17,7 +17,7 @@ export default function Navbar() {
       <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
         <Logo />
 
-        <nav className="w-max flex items-center gap-32">
+        <nav className="w-max flex items-center gap-12 md:gap-24 xl:gap-32">
           <NavigationContainer
             to="/"
             title="Home"

@@ -6,19 +6,14 @@ const commments = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-    }),
-    defineField({
-      name: 'name',
-      title: 'Name',
+      name: 'title',
+      title: 'Title',
       type: 'string',
     }),
     defineField({
-      name: 'comment',
-      title: 'Comment',
-      type: 'text',
+      name: 'image',
+      title: 'Image',
+      type: 'image',
     }),
   ],
 })

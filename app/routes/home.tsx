@@ -38,7 +38,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     <>
       <Navbar />
       <main
-        className="w-full h-[57vh] flex items-center flex-col justify-center pt-16 pb-4"
+        className="w-full h-max 2xl:h-[57vh] flex items-center flex-col justify-center pt-16 pb-4"
         data-cursor-slot="#FFCE2B"
       >
         <IntroBento />

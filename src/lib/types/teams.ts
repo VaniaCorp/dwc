@@ -1,16 +1,8 @@
-import type { SanityDocument, SanityReference } from "./sanity";
-import type { Student } from "./students";
-
-/** Reference as stored in Sanity (unexpanded) */
-type StudentRef = SanityReference;
-
-/** Reference expanded via GROQ — use when your query dereferences the field */
-type StudentExpanded = Student;
+import type { SanityDocument, SanityImage } from "./sanity";
 
 export interface Team extends SanityDocument {
   _type: "teams";
   name?: string;
-  team_lead?: StudentRef | StudentExpanded;
-  team_members?: (StudentRef | StudentExpanded)[];
+  team_image?: SanityImage;
   project_link?: string;
 }

@@ -120,7 +120,7 @@ export default function HeroText() {
     <>
       <h1
         ref={containerRef}
-        className="w-full max-w-5xl text-center text-4xl md:text-[80px] grid place-items-center"
+        className="w-full max-w-5xl text-center text-6xl xl:text-[80px] grid place-items-center"
       >
         <span className="sr-only">
           Master the Figma Pen-Tool in just 8 weeks

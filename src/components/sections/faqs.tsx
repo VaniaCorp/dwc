@@ -8,7 +8,7 @@ import {
 
 export default function FAQs({ faqs }: { faqs: FAQ[] }) {
   return (
-    <div className="w-full max-w-5xl mx-auto pb-20 flex flex-col gap-5">
+    <div className="w-full max-w-5xl mx-auto max-xl:px-12 pb-20 flex flex-col gap-5">
       {faqs.map((faq) => (
         <Accordion type="multiple" key={faq._id}>
           <AccordionItem value={faq._id}>

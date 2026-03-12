@@ -15,11 +15,6 @@ const students = defineType({
       title: 'Image',
       type: 'image',
     }),
-    defineField({
-      name: 'color',
-      title: 'Display Color',
-      type: 'color',
-    }),
   ],
 })
 

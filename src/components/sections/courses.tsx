@@ -84,7 +84,9 @@ function CourseCard({ course }: { course: Course }) {
       </aside>
 
       <article className="flex-1 min-w-0 grid grid-rows-[9rem_auto_1fr] pt-6 gap-3">
-        <h2 className="h2 font-bold! uppercase self-start">{course.title}</h2>
+        <h2 className="h3 xl:h2 font-bold! uppercase self-start">
+          {course.title}
+        </h2>
 
         <div className="inline-flex flex-col w-max">
           <p className="p text-center" style={{ color: course.color }}>
@@ -93,7 +95,6 @@ function CourseCard({ course }: { course: Course }) {
           <CurvedLine color={course.color} className="w-full h-1.5" />
         </div>
 
-        {/* Row 3: Objective items — takes remaining space */}
         <ul className="space-y-2 self-start">
           {course.objectives.map((obj, i) => (
             <li
@@ -115,7 +116,7 @@ function CourseCard({ course }: { course: Course }) {
 
 export default function Courses() {
   return (
-    <div className="w-full mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-5">
+    <div className="w-full mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-5 max-2xl:px-6">
       {courses.map((course, index) => (
         <CourseCard key={index} course={course} />
       ))}
