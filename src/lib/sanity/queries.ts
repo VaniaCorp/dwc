@@ -24,7 +24,8 @@ export const getComments = (): Promise<Comment[]> =>
   }`);
 
 export const getStudents = (): Promise<Student[]> =>
-  getSanityClient().fetch(`*[_type == "students"] | order(name asc) {
+  getSanityClient()
+    .fetch(`*[_type == "students" && defined(image)] | order(name asc) {
     _id, _type, _createdAt, _updatedAt, _rev,
     name,
     image {

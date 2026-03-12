@@ -18,7 +18,6 @@ export default function StudentsDisplay({ students }: { students: Student[] }) {
     let currentX = INITIAL_OFFSET;
     gsap.set(track, { x: currentX });
 
-    // Cache card metrics once — layout won't change at runtime
     const cards = Array.from(track.children) as HTMLElement[];
     const cardMetrics = cards.map((el) => ({
       el,
@@ -28,8 +27,6 @@ export default function StudentsDisplay({ students }: { students: Student[] }) {
 
     let containerHalfWidth = container.offsetWidth / 2;
 
-    // velocity tracks delta magnitude per wheel event; decays per frame.
-    // scrollActivity is derived from velocity — mirrors deceleration exactly.
     let velocity = 0;
     let scrollActivity = 0;
 
@@ -55,9 +52,7 @@ export default function StudentsDisplay({ students }: { students: Student[] }) {
     let rafId: number;
     const tick = () => {
       currentX += (targetX - currentX) * 0.1;
-      // Decay velocity each frame — when wheel events stop firing, this reaches 0
       velocity *= 0.85;
-      // Normalize: 20px/event = full effect, scales linearly below that
       scrollActivity = Math.min(1, velocity / 40);
       gsap.set(track, { x: currentX });
       applyCardTransforms();
@@ -95,13 +90,15 @@ export default function StudentsDisplay({ students }: { students: Student[] }) {
     };
   }, [students.length]);
 
+  const visibleStudents = students.filter((s) => s.image?.asset?.url);
+
   return (
     <div ref={containerRef} className="w-full pb-20 overflow-hidden">
       <div ref={trackRef} className="flex flex-row gap-4 pr-8">
-        {students.map((student, idx) => (
+        {visibleStudents.map((student, idx) => (
           <div key={idx} className="shrink-0 w-95">
             <Image
-              src={student.image?.asset.url || ""}
+              src={student.image!.asset.url!}
               width={9}
               height={16}
               className="carousel-item"
