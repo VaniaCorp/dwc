@@ -9,6 +9,7 @@ export { default as Logo } from "./logo";
 export { default as RegisterIcon } from "./register";
 export { default as SendIcon } from "./send";
 export { default as CurvedLine } from "./curved-line";
+export { default as Arrow } from "./arrow";
 
 // Navigation Icons
 

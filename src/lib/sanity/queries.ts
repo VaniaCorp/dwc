@@ -55,7 +55,12 @@ export const getTeams = (): Promise<Team[]> =>
   getSanityClient().fetch(`*[_type == "teams"] | order(name asc) {
     _id, _type, _createdAt, _updatedAt, _rev,
     name,
-    team_image,
+    team_image {
+      asset-> {
+        _id,
+        url
+      }
+    },
     project_link
   }`);
 

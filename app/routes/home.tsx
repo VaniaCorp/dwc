@@ -6,10 +6,11 @@ import SectionNavigation from "@/components/layout/sections-navigation";
 import Courses from "@/components/sections/courses";
 import FAQs from "@/components/sections/faqs";
 import StudentsDisplay from "@/components/sections/students";
+import TeamsDisplay from "@/components/sections/teams";
 import HeroText from "@/components/sections/hero-text";
 import IntroBento from "@/components/sections/intro-bento";
 import LiquidGlassButton from "@/components/ui/liquid-glass-button";
-import { getFaqs, getStudents } from "@/lib/sanity/queries";
+import { getFaqs, getStudents, getTeams } from "@/lib/sanity/queries";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -25,17 +26,18 @@ export async function clientLoader() {
   try {
     const faqs = await getFaqs();
     const students = await getStudents();
-    return { faqs, students };
+    const teams = await getTeams();
+    return { faqs, students, teams };
   } catch (error) {
     console.error("[clientLoader] Failed to fetch Sanity data:", error);
-    return { faqs: [], students: [] };
+    return { faqs: [], students: [], teams: [] };
   }
 }
 
 clientLoader.hydrate = true;
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const { faqs, students } = loaderData;
+  const { faqs, students, teams } = loaderData;
 
   return (
     <>
@@ -62,6 +64,12 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
       <section className="w-full" id="students" data-cursor-slot="#689CF5">
         <StudentsDisplay students={students} />
+      </section>
+
+      <SectionNavigation />
+
+      <section className="w-full" id="team" data-cursor-slot="#9B1CFF">
+        <TeamsDisplay teams={teams} />
       </section>
 
       <SectionNavigation />

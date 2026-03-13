@@ -6,6 +6,7 @@
   --primary: #ffce2b;
   --accent: #fff6da;
   --red: #ff3434;
+  --purple: #9b1cff;
 }
 
 @font-face {
@@ -24,6 +25,7 @@
   --color-primary: var(--primary);
   --color-accent: var(--accent);
   --color-red: var(--red);
+  --color-purple: var(--purple);
 }
 
 *,

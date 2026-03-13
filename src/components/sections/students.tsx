@@ -71,7 +71,6 @@ export default function StudentsDisplay({ students }: { students: Student[] }) {
           getMinX(),
           Math.min(INITIAL_OFFSET, targetX - delta)
         );
-        // Set velocity to actual delta magnitude — reflects real scroll speed
         velocity = Math.abs(delta);
       }
     };
