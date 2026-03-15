@@ -10,7 +10,13 @@ import TeamsDisplay from "@/components/sections/teams";
 import HeroText from "@/components/sections/hero-text";
 import IntroBento from "@/components/sections/intro-bento";
 import LiquidGlassButton from "@/components/ui/liquid-glass-button";
-import { getFaqs, getStudents, getTeams } from "@/lib/sanity/queries";
+import {
+  getComments,
+  getFaqs,
+  getStudents,
+  getTeams,
+} from "@/lib/sanity/queries";
+import CommentsDisplay from "@/components/sections/comments";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -27,23 +33,24 @@ export async function clientLoader() {
     const faqs = await getFaqs();
     const students = await getStudents();
     const teams = await getTeams();
-    return { faqs, students, teams };
+    const comments = await getComments();
+    return { faqs, students, teams, comments };
   } catch (error) {
     console.error("[clientLoader] Failed to fetch Sanity data:", error);
-    return { faqs: [], students: [], teams: [] };
+    return { faqs: [], students: [], teams: [], comments: [] };
   }
 }
 
 clientLoader.hydrate = true;
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const { faqs, students, teams } = loaderData;
+  const { faqs, students, teams, comments } = loaderData;
 
   return (
-    <>
+    <div className="w-full h-full">
       <Navbar />
       <main
-        className="w-full h-max 2xl:h-[57vh] flex items-center flex-col justify-center pt-4 xl:pt-16 pb-4"
+        className="w-full 2xl:h-[57vh] flex items-center flex-col justify-center pt-4 xl:pt-16 pb-4"
         data-cursor-slot="#FFCE2B"
       >
         <IntroBento />
@@ -74,11 +81,17 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
       <SectionNavigation />
 
+      <section className="w-full" id="feedbacks" data-cursor-slot="#ACFD85">
+        <CommentsDisplay comments={comments} />
+      </section>
+
+      <SectionNavigation />
+
       <section className="w-full" id="faqs" data-cursor-slot="#FFCE2B">
         <FAQs faqs={faqs} />
       </section>
 
       <Footer />
-    </>
+    </div>
   );
 }

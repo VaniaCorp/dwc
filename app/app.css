@@ -7,6 +7,7 @@
   --accent: #fff6da;
   --red: #ff3434;
   --purple: #9b1cff;
+  --lime: #acfd85;
 }
 
 @font-face {
@@ -26,6 +27,7 @@
   --color-accent: var(--accent);
   --color-red: var(--red);
   --color-purple: var(--purple);
+  --color-lime: var(--lime);
 }
 
 *,
@@ -206,4 +208,96 @@ button {
 .glass-card > * {
   position: relative;
   z-index: 1;
+}
+
+/* Comments canvas layout */
+.comment-slot {
+  position: absolute;
+}
+.comment-slot img {
+  filter: brightness(1.06) contrast(1.02);
+}
+.comment-slot-0 {
+  top: -4%;
+  left: 38.8%;
+  width: 42%;
+  z-index: 3;
+}
+.comment-slot-1 {
+  top: 2.3%;
+  left: 0%;
+  width: 40%;
+  z-index: 4;
+}
+.comment-slot-2 {
+  top: 5.3%;
+  right: 0%;
+  width: 40%;
+  z-index: 3;
+}
+.comment-slot-3 {
+  top: 11%;
+  left: 28%;
+  width: 42%;
+  z-index: 2;
+}
+.comment-slot-4 {
+  top: 20.67%;
+  left: 0%;
+  width: 30%;
+  z-index: 5;
+}
+.comment-slot-5 {
+  top: 22%;
+  right: 0%;
+  width: 32%;
+  z-index: 4;
+}
+.comment-slot-6 {
+  top: 26%;
+  left: 0%;
+  width: 50%;
+  z-index: 3;
+}
+.comment-slot-7 {
+  top: 26%;
+  right: -11%;
+  width: 70%;
+  z-index: 6;
+}
+.comment-slot-8 {
+  top: 34%;
+  left: 0%;
+  width: 65%;
+  z-index: 5;
+}
+.comment-slot-9 {
+  bottom: 18.5%;
+  left: 10%;
+  width: 50%;
+  z-index: 7;
+}
+.comment-slot-10 {
+  bottom: 12%;
+  right: 0%;
+  width: 30%;
+  z-index: 6;
+}
+.comment-slot-11 {
+  bottom: 0%;
+  left: 0%;
+  width: 45%;
+  z-index: 5;
+}
+.comment-slot-12 {
+  bottom: 0%;
+  left: 27.5%;
+  width: 75%;
+  z-index: 8;
+}
+.comment-slot-13 {
+  bottom: 0%;
+  left: 66%;
+  width: 30%;
+  z-index: 7;
 }

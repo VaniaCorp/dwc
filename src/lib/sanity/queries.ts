@@ -12,7 +12,8 @@ export const getFaqs = (): Promise<FAQ[]> =>
   }`);
 
 export const getComments = (): Promise<Comment[]> =>
-  getSanityClient().fetch(`*[_type == "comments"] | order(_createdAt desc) {
+  getSanityClient()
+    .fetch(`*[_type == "comments" && defined(image)] | order(_createdAt desc) {
     _id, _type, _createdAt, _updatedAt, _rev,
     title,
     image {
