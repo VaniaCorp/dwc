@@ -92,7 +92,7 @@ export default function StudentsDisplay({ students }: { students: Student[] }) {
   const visibleStudents = students.filter((s) => s.image?.asset?.url);
 
   return (
-    <div ref={containerRef} className="w-full pb-20 overflow-hidden">
+    <div ref={containerRef} className="w-full overflow-hidden">
       <div ref={trackRef} className="flex flex-row gap-4 pr-8">
         {visibleStudents.map((student, idx) => (
           <div key={idx} className="shrink-0 w-95">

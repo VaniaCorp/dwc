@@ -98,7 +98,7 @@ export default function TeamsDisplay({ teams }: { teams: Team[] }) {
   }, [teams.length]);
 
   return (
-    <div ref={containerRef} className="w-full pb-32 overflow-hidden">
+    <div ref={containerRef} className="w-full overflow-hidden">
       <div ref={trackRef} className="flex flex-row gap-4">
         {teams.map((item, idx) => (
           <div key={idx} className="shrink-0 w-92">

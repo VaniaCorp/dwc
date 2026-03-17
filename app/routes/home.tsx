@@ -17,6 +17,7 @@ import {
   getTeams,
 } from "@/lib/sanity/queries";
 import CommentsDisplay from "@/components/sections/comments";
+import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -55,33 +56,43 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       >
         <IntroBento />
         <HeroText />
-        <LiquidGlassButton className="flex items-center text-xl! gap-3 px-24 py-6 mt-18 rounded-3xl">
-          <SendIcon />
-          Get Started
-        </LiquidGlassButton>
+        <Link to="https://bit.ly/designwithchike" target="_blank">
+          <LiquidGlassButton className="flex items-center text-xl! gap-3 px-24 py-6 mt-18 rounded-3xl">
+            <SendIcon />
+            Get Started
+          </LiquidGlassButton>
+        </Link>
       </main>
 
       <SectionNavigation />
 
-      <section className="w-full" id="courses" data-cursor-slot="#FF3434">
+      <section className="w-full pb-20" id="courses" data-cursor-slot="#FF3434">
         <Courses />
       </section>
 
       <SectionNavigation />
 
-      <section className="w-full" id="students" data-cursor-slot="#689CF5">
+      <section
+        className="w-full pb-20"
+        id="students"
+        data-cursor-slot="#689CF5"
+      >
         <StudentsDisplay students={students} />
       </section>
 
       <SectionNavigation />
 
-      <section className="w-full" id="team" data-cursor-slot="#9B1CFF">
+      <section className="w-full pb-20" id="team" data-cursor-slot="#9B1CFF">
         <TeamsDisplay teams={teams} />
       </section>
 
       <SectionNavigation />
 
-      <section className="w-full" id="feedbacks" data-cursor-slot="#ACFD85">
+      <section
+        className="w-full pb-20"
+        id="feedbacks"
+        data-cursor-slot="#ACFD85"
+      >
         <CommentsDisplay comments={comments} />
       </section>
 

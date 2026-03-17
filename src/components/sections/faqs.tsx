@@ -8,14 +8,14 @@ import {
 
 export default function FAQs({ faqs }: { faqs: FAQ[] }) {
   return (
-    <div className="w-full max-w-5xl mx-auto max-xl:px-12 pb-20 flex flex-col gap-5">
+    <div className="w-full max-w-5xl mx-auto max-xl:px-12 flex flex-col gap-5">
       {faqs.map((faq) => (
         <Accordion type="multiple" key={faq._id}>
           <AccordionItem value={faq._id}>
-            <AccordionTrigger className="text-3xl font-semibold">
+            <AccordionTrigger className="text-3xl font-semibold font-syne">
               {faq.question}
             </AccordionTrigger>
-            <AccordionContent className="w-10/12 text-background">
+            <AccordionContent className="w-10/12 text-background font-sans">
               {faq.answer}
             </AccordionContent>
           </AccordionItem>

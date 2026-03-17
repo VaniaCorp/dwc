@@ -29,10 +29,12 @@ export default function Navbar() {
           <NavigationContainer to="/" title="Chat" Icon={ChatIcon} />
         </nav>
 
-        <LiquidGlassButton className="flex items-center gap-2 rounded-[20px] px-12 py-4">
-          <RegisterIcon color="#FFCE2B" />
-          Register
-        </LiquidGlassButton>
+        <Link to="https://bit.ly/designwithchike" target="_blank">
+          <LiquidGlassButton className="flex items-center gap-2 rounded-[20px] px-12 py-4">
+            <RegisterIcon color="#FFCE2B" />
+            Register
+          </LiquidGlassButton>
+        </Link>
       </div>
     </header>
   );

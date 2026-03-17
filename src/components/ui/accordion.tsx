@@ -136,7 +136,7 @@ const AccordionTrigger = React.forwardRef<
     <button
       ref={ref}
       data-slot="accordion-trigger"
-      aria-expanded={`${open}`}
+      // aria-expanded={`${open}`}
       aria-controls={`accordion-content-${value}`}
       onClick={() => toggleItem(value)}
       className={cn(
@@ -180,7 +180,7 @@ const AccordionContent = React.forwardRef<
       contentRef.current = node;
       if (typeof ref === "function") ref(node);
       else if (ref)
-        (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        (ref as React.RefObject<HTMLDivElement | null>).current = node;
     },
     [ref]
   );

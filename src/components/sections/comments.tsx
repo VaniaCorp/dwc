@@ -33,10 +33,10 @@ export default function CommentsDisplay({ comments }: { comments: Comment[] }) {
   }, [filtered.length]);
 
   return (
-    <div className="w-full px-6 py-12">
+    <div className="w-full px-6">
       <div
         ref={containerRef}
-        className="relative w-full max-w-4xl h-280 mx-auto rounded-4xl border border-lime overflow-hidden"
+        className="relative w-full max-w-5xl h-280 mx-auto rounded-4xl border border-lime overflow-hidden"
       >
         {filtered.map((comment, i) => (
           <div key={comment._id} className={`comment-slot comment-slot-${i}`}>
