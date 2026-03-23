@@ -13,7 +13,7 @@ type ResponsiveImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
 const DEFAULT_WIDTHS = [320, 640, 768, 1024, 1280, 1536];
 
 const buildSrcSet = (src: string, widths: Array<number>) =>
-  widths.map((w) => `${src}?w=${w} ${w}w`).join(", ");
+  widths.map((w) => `${src}?w=${w}&fm=webp&q=80 ${w}w`).join(", ");
 
 const Image: React.FC<ResponsiveImageProps> = ({
   src,
@@ -43,7 +43,7 @@ const Image: React.FC<ResponsiveImageProps> = ({
 
   return (
     <img
-      src={src}
+      src={`${src}?w=800&fm=webp&q=80`}
       srcSet={buildSrcSet(src, widths)}
       sizes={sizes}
       loading={priority ? "eager" : "lazy"}

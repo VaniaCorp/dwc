@@ -19,9 +19,15 @@ export function GSAPLenisProvider({ children }: { children: React.ReactNode }) {
     const lenis = lenisRef.current?.lenis;
     lenis?.on("scroll", ScrollTrigger.update);
 
+    const ro = new ResizeObserver(() => {
+      lenisRef.current?.lenis?.resize();
+    });
+    ro.observe(document.body);
+
     return () => {
       gsap.ticker.remove(update);
       lenis?.off("scroll", ScrollTrigger.update);
+      ro.disconnect();
     };
   }, []);
 

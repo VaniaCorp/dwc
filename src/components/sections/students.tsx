@@ -100,6 +100,7 @@ export default function StudentsDisplay({ students }: { students: Student[] }) {
               src={student.image!.asset.url!}
               width={9}
               height={16}
+              alt={student.name || "Student"}
               className="carousel-item"
               style={{ width: "480px", height: "641px" }}
             />

@@ -1,3 +1,4 @@
+import * as React from "react";
 import type { Route } from "./+types/home";
 import { SendIcon } from "@/assets/icons";
 import Footer from "@/components/layout/footer";
@@ -17,19 +18,68 @@ import {
   getTeams,
 } from "@/lib/sanity/queries";
 import CommentsDisplay from "@/components/sections/comments";
+import MobileGate from "@/components/layout/mobile-gate";
 import { Link } from "react-router";
+
+const MOBILE_LAYOUT_QUERY = "(max-width: 830px)";
+
+const isMobileLayout = () =>
+  typeof window !== "undefined" &&
+  typeof window.matchMedia === "function" &&
+  window.matchMedia(MOBILE_LAYOUT_QUERY).matches;
 
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Design with Chike" },
     {
       name: "description",
-      content: "Welcome to the Design with Chike Website",
+      content:
+        "Learn to create stunning illustrations and vector art from scratch with expert guidance",
+    },
+    {
+      name: "keywords",
+      content:
+        "design, chike, illustrations, vector art, learning, figma, product design, pen tool, designwithchike, chikeivor designwithchike, dwc, dwchq, figma, figma illustration, figma illustrator, figma pentool, pentool, pentool benders",
+    },
+    { name: "twitter:card", content: "summary" },
+    { name: "twitter:title", content: "designwithchike" },
+    {
+      name: "twitter:description",
+      content:
+        "Learn to create stunning illustrations and vector art from scratch with expert guidance",
+    },
+    {
+      name: "twitter:image",
+      content:
+        "https://res.cloudinary.com/dgtoh3s2a/image/upload/v1774273954/dwc_pllnfy.png",
+    },
+    { name: "twitter:creator", content: "@chikeivor" },
+    { name: "twitter:creator:id", content: "https://x.com/chikeoivor" },
+    { property: "og:type", content: "website" },
+    {
+      property: "og:url",
+      content: "https://www.linkedin.com/company/design-with-chike/",
+    },
+    { property: "og:title", content: "Design With Chike" },
+    {
+      property: "og:description",
+      content: "Hey, let's bend those lines",
+    },
+    { property: "og:site_name", content: "Design with Chike" },
+    {
+      property: "og:image",
+      content:
+        "https://res.cloudinary.com/dgtoh3s2a/image/upload/v1774274236/dwc-students_ktaptd.png",
     },
   ];
 }
 
 export async function clientLoader() {
+  // Mobile renders only the gate component; skip section data requests.
+  if (isMobileLayout()) {
+    return { faqs: [], students: [], teams: [], comments: [] };
+  }
+
   try {
     const faqs = await getFaqs();
     const students = await getStudents();
@@ -46,6 +96,30 @@ clientLoader.hydrate = true;
 
 export default function Home({ loaderData }: Route.ComponentProps) {
   const { faqs, students, teams, comments } = loaderData;
+  const [mobileOnly, setMobileOnly] = React.useState<boolean>(isMobileLayout);
+
+  React.useEffect(() => {
+    if (
+      typeof window === "undefined" ||
+      typeof window.matchMedia !== "function"
+    )
+      return;
+
+    const mql = window.matchMedia(MOBILE_LAYOUT_QUERY);
+    const updateMobileState = (event: MediaQueryListEvent) =>
+      setMobileOnly(event.matches);
+
+    setMobileOnly(mql.matches);
+    mql.addEventListener("change", updateMobileState);
+
+    return () => {
+      mql.removeEventListener("change", updateMobileState);
+    };
+  }, []);
+
+  if (mobileOnly) {
+    return <MobileGate />;
+  }
 
   return (
     <div className="w-full h-full">

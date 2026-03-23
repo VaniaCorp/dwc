@@ -19,9 +19,12 @@ export default function CursorController() {
   const lastCursorTarget = React.useRef<HTMLElement | null>(null);
 
   React.useEffect(() => {
+    let dirty = false;
+
     const move = (e: MouseEvent) => {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
+      dirty = true;
 
       const target = e.target as HTMLElement;
 
@@ -115,10 +118,12 @@ export default function CursorController() {
     };
 
     const frame = () => {
-      const el = cursorRef.current;
-
-      if (el) {
-        el.style.transform = `translate3d(${mouse.current.x}px, ${mouse.current.y}px, 0) scale(${scale.current})`;
+      if (dirty) {
+        const el = cursorRef.current;
+        if (el) {
+          el.style.transform = `translate3d(${mouse.current.x}px, ${mouse.current.y}px, 0) scale(${scale.current})`;
+        }
+        dirty = false;
       }
 
       raf.current = requestAnimationFrame(frame);
@@ -146,7 +151,7 @@ export default function CursorController() {
   return (
     <div
       ref={cursorRef}
-      className="pointer-events-none fixed left-0 top-0 z-[9999] will-change-transform text-black"
+      className="pointer-events-none fixed left-0 top-0 z-9999 will-change-transform text-black"
     >
       <svg
         ref={iconRef}

@@ -90,6 +90,10 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
       // Cleanup collectors for DOM event listeners (used by card 4)
       const cleanupFns: (() => void)[] = [];
 
+      // All repeat:-1 timelines — paused/resumed by IntersectionObserver below
+      const timelines: gsap.core.Timeline[] = [];
+      let isVisible = true;
+
       // ── Card 1: FigmaLine path draw → float loop ──────────────────────────
       if (index === 0) {
         const paths = iconRef.current!.querySelectorAll<SVGPathElement>("path");
@@ -106,6 +110,7 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
         gsap.set(paths[1], { strokeDasharray: len1, strokeDashoffset: len1 });
 
         const tl = gsap.timeline({ repeat: -1 });
+        timelines.push(tl);
 
         tl.to(paths[0], {
           strokeDashoffset: 0,
@@ -145,6 +150,7 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
         gsap.set(svg, { transformOrigin: "8% 1%" });
 
         const tl = gsap.timeline({ repeat: -1 });
+        timelines.push(tl);
 
         tl
           // Draw path
@@ -212,6 +218,7 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
         const mouthPath = paths[4]; // complex face / mouth path
 
         const tl = gsap.timeline({ repeat: -1 });
+        timelines.push(tl);
 
         tl
           // 1. Draw — fromTo is explicit on every cycle, no ambiguity
@@ -315,6 +322,7 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
         const pairB = [coloredPaths[1], coloredPaths[3]]; // green + purple
 
         const blinkTl = gsap.timeline({ repeat: -1, paused: true });
+        // pushed to timelines inside onComplete so it only gets toggled after intro finishes
         blinkTl
           .to(pairA, { opacity: 0.25, duration: 0.55, ease: "power2.inOut" })
           .to(pairB, { opacity: 1, duration: 0.55, ease: "power2.inOut" }, "<")
@@ -330,7 +338,8 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
         // One-time intro — plays once then hands off to blinkTl
         const intro = gsap.timeline({
           onComplete: () => {
-            blinkTl.play();
+            timelines.push(blinkTl);
+            if (isVisible) blinkTl.play();
           },
         });
 
@@ -443,6 +452,7 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
         const reversed = [...allPaths].reverse();
 
         const tl = gsap.timeline({ repeat: -1 });
+        timelines.push(tl);
 
         tl
           // 1. Staggered wind-in — coils appear one by one
@@ -494,6 +504,7 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
         gsap.set(svg, { transformOrigin: "50% 100%" });
 
         const tl = gsap.timeline({ repeat: -1 });
+        timelines.push(tl);
 
         tl
           // 1. Draw in
@@ -528,9 +539,20 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
           );
       }
 
-      if (cleanupFns.length > 0) {
-        return () => cleanupFns.forEach((fn) => fn());
-      }
+      // Pause all repeating timelines when card leaves viewport, resume on enter
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          isVisible = entry.isIntersecting;
+          timelines.forEach((t) =>
+            entry.isIntersecting ? t.play() : t.pause()
+          );
+        },
+        { threshold: 0.1 }
+      );
+      obs.observe(iconRef.current!);
+      cleanupFns.push(() => obs.disconnect());
+
+      return () => cleanupFns.forEach((fn) => fn());
     },
     { scope: iconRef }
   );
