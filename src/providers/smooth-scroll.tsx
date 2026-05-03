@@ -32,7 +32,17 @@ export function GSAPLenisProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <ReactLenis root options={{ autoRaf: false }} ref={lenisRef}>
+    <ReactLenis
+      root
+      options={{
+        autoRaf: false,
+        anchors: {
+          duration: 1.15,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        },
+      }}
+      ref={lenisRef}
+    >
       {children}
     </ReactLenis>
   );

@@ -21,6 +21,10 @@ import CommentsDisplay from "@/components/sections/comments";
 import MobileGate from "@/components/layout/mobile-gate";
 import { Link } from "react-router";
 
+const SITE_URL = "https://dwchq.co.uk/";
+const DEFAULT_OG_IMAGE =
+  "https://res.cloudinary.com/dgtoh3s2a/image/upload/v1777793802/dwc_2_boasga.png";
+
 const MOBILE_LAYOUT_QUERY = "(max-width: 830px)";
 
 const isMobileLayout = () =>
@@ -28,48 +32,59 @@ const isMobileLayout = () =>
   typeof window.matchMedia === "function" &&
   window.matchMedia(MOBILE_LAYOUT_QUERY).matches;
 
+const metaTitle = "DWC (Design with Chike) | Figma pen-tool bootcamp — 8 weeks";
+const metaDescription =
+  "DWC — live virtual Figma illustration training (designwithchike). Master the pen tool and vector illustration in 8 weeks. Visit dwchq.co.uk.";
+const metaKeywords =
+  "DWC, dwc, design with chike, designwithchike, dwchq, dwchq.co.uk, figma bootcamp, figma pen tool, figma illustration, vector art, live illustration training, product design, pentool";
+
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Design with Chike" },
+    { title: metaTitle },
+    {
+      tagName: "link",
+      rel: "canonical",
+      href: SITE_URL,
+    },
     {
       name: "description",
-      content:
-        "Learn to create stunning illustrations and vector art from scratch with expert guidance",
+      content: metaDescription,
     },
     {
       name: "keywords",
-      content:
-        "design, chike, illustrations, vector art, learning, figma, product design, pen tool, designwithchike, chikeivor designwithchike, dwc, dwchq, figma, figma illustration, figma illustrator, figma pentool, pentool, pentool benders",
+      content: metaKeywords,
     },
-    { name: "twitter:card", content: "summary" },
-    { name: "twitter:title", content: "designwithchike" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: metaTitle },
     {
       name: "twitter:description",
-      content:
-        "Learn to create stunning illustrations and vector art from scratch with expert guidance",
+      content: metaDescription,
     },
     {
       name: "twitter:image",
-      content:
-        "https://res.cloudinary.com/dgtoh3s2a/image/upload/v1774273954/dwc_pllnfy.png",
+      content: DEFAULT_OG_IMAGE,
     },
+    { name: "twitter:site", content: "@designwithchike" },
     { name: "twitter:creator", content: "@chikeivor" },
-    { name: "twitter:creator:id", content: "https://x.com/chikeoivor" },
     { property: "og:type", content: "website" },
     {
       property: "og:url",
-      content: "https://www.linkedin.com/company/design-with-chike/",
+      content: SITE_URL,
     },
-    { property: "og:title", content: "Design With Chike" },
+    { property: "og:title", content: metaTitle },
     {
       property: "og:description",
-      content: "Hey, let's bend those lines",
+      content: metaDescription,
     },
-    { property: "og:site_name", content: "Design with Chike" },
+    { property: "og:site_name", content: "DWC (Design with Chike)" },
     {
       property: "og:image",
+      content: DEFAULT_OG_IMAGE,
+    },
+    {
+      property: "og:image:alt",
       content:
-        "https://res.cloudinary.com/dgtoh3s2a/image/upload/v1774274236/dwc-students_ktaptd.png",
+        "DWC — Design with Chike: Figma pen-tool and illustration training",
     },
   ];
 }
