@@ -6,6 +6,11 @@ import {
   USAIcon,
   EnglandIcon,
   FourStarIcon,
+  CameroonIcon,
+  TurkeyIcon,
+  ScotlandIcon,
+  IndiaIcon,
+  YellowPlusIcon,
 } from "@/assets/icons";
 import { LiquidGlass } from "../ui/liquid-glass";
 import { useRef } from "react";
@@ -97,13 +102,15 @@ export default function IntroBento() {
 
   return (
     <div ref={container}>
-      <LiquidGlass className="w-max px-8 py-5 flex items-center gap-1 mx-auto my-12">
-        <span ref={starRef} className="inline-flex shrink-0">
-          <FourStarIcon className="text-primary size-5" />
-        </span>
-        <p ref={textRef} className="p font-sans">
-          Trained over 190+ students in Africa & Europe
-        </p>
+      <LiquidGlass className="w-max px-8 py-5 flex flex-col gap-1 mx-auto my-12">
+        <div className="flex items-center gap-3">
+          <span ref={starRef} className="inline-flex shrink-0">
+            <FourStarIcon className="text-primary size-5" />
+          </span>
+          <p ref={textRef} className="p font-sans">
+            Trained over 200+ students in Africa & Europe
+          </p>
+        </div>
         <span ref={flagsRef} className="flex items-center gap-1">
           {countries.map((CountryIcon, index) => (
             <span key={index} className="inline-flex shrink-0">
@@ -123,4 +130,9 @@ const countries = [
   USAIcon,
   FinlandIcon,
   EnglandIcon,
+  ScotlandIcon,
+  TurkeyIcon,
+  IndiaIcon,
+  CameroonIcon,
+  YellowPlusIcon,
 ];
