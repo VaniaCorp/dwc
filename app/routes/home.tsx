@@ -64,7 +64,7 @@ export function meta({}: Route.MetaArgs) {
       name: "twitter:image",
       content: DEFAULT_OG_IMAGE,
     },
-    { name: "twitter:site", content: "@designwithchike" },
+    { name: "twitter:site", content: "@dwc_hq" },
     { name: "twitter:creator", content: "@chikeivor" },
     { property: "og:type", content: "website" },
     {

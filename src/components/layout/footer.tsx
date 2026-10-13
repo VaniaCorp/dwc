@@ -83,7 +83,7 @@ const navLinks = [
 const socials = [
   {
     icon: Envelope,
-    link: "mailto:designwithchike@gmail.com",
+    link: "mailto:dwchqr@gmail.com",
     title: "Email us",
     color: "#FFCE2B",
   },
@@ -93,7 +93,7 @@ const socials = [
   // },
   {
     icon: XIcon,
-    link: "https://x.com/designwithchike",
+    link: "https://x.com/dwc_hq",
     title: "Follow on X",
     color: "#0e1113",
   },
